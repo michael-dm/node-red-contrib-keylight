@@ -12,11 +12,6 @@ const nodeInit: NodeInitializer = (RED): void => {
     RED.nodes.createNode(this, config)
 
     const lightApi = new ElgatoLightAPI()
-    console.log('Looking for elgato lights.')
-
-    lightApi.on('newLight', (light: KeyLight) => {
-      console.log(light, 'New light detected')
-    })
 
     this.getLights = () => lightApi.keyLights
 
