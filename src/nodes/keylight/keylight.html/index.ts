@@ -34,7 +34,8 @@ RED.nodes.registerType<EditorNodeProperties & KeylightOptions>('keylight', {
         if (res.status !== 200) console.error(await res.text())
         const lights: KeyLight[] = await res.json()
         lights.forEach((light) => {
-          inputLight.append(
+          inputLight.insertAdjacentHTML(
+            'beforeend',
             `<option value="${light.ip}">${light.name}</option>`
           )
         })
