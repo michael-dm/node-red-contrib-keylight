@@ -1,9 +1,10 @@
 import { KeyLight } from 'elgato-light-api'
-import { EditorRED } from 'node-red'
+import { EditorNodeProperties, EditorRED } from 'node-red'
+import { KeylightOptions } from '../types'
 
 declare const RED: EditorRED
 
-RED.nodes.registerType('keylight', {
+RED.nodes.registerType<EditorNodeProperties & KeylightOptions>('keylight', {
   category: 'function',
   color: '#a6bbcf',
   defaults: {
@@ -12,7 +13,7 @@ RED.nodes.registerType('keylight', {
     light: { value: '' },
   },
   inputs: 1,
-  outputs: 1,
+  outputs: 0,
   icon: 'transform-text.png',
   paletteLabel: 'keylight',
   label: function () {
@@ -32,13 +33,12 @@ RED.nodes.registerType('keylight', {
         )
         if (res.status !== 200) console.error(await res.text())
         const lights: KeyLight[] = await res.json()
-
-        console.log(lights)
-        // lights.forEach(light => {
-
-        // })
-        // inputLight.append(`<option value="${}">${}</option>`)
-        // inputLight.value = this.light
+        lights.forEach((light) => {
+          inputLight.append(
+            `<option value="${light.ip}">${light.name}</option>`
+          )
+        })
+        inputLight.value = this.light
       }
     }
   },

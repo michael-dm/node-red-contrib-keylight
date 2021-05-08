@@ -1,6 +1,6 @@
 import { NodeDef, NodeInitializer } from 'node-red'
 import { KeylightServerNode, KeylightServerOptions } from './types'
-import { ElgatoLightAPI, KeyLight } from 'elgato-light-api'
+import { ElgatoLightAPI, KeyLight, KeyLightOptions } from 'elgato-light-api'
 
 const nodeInit: NodeInitializer = (RED): void => {
   const keylightServers: { [key: string]: KeylightServerNode } = {}
@@ -19,6 +19,11 @@ const nodeInit: NodeInitializer = (RED): void => {
     })
 
     this.getLights = () => lightApi.keyLights
+
+    this.setLight = async (light) => {
+      if (light.options) await lightApi.updateLightOptions(light, light.options)
+      else throw Error('Options property not found in light.')
+    }
 
     keylightServers[this.id] = this
 

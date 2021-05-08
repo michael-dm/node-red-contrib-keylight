@@ -3,4 +3,5 @@ import { KeylightServerNode } from '../keylight-server/types'
 
 export interface KeylightOptions {
   server: string
+  light: string
 }

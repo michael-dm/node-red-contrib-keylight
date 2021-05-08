@@ -11,14 +11,17 @@ const nodeInit: NodeInitializer = (RED): void => {
 
     const server = RED.nodes.getNode(config.server) as KeylightServerNode
 
-    if (server) {
-    } else {
-      console.error('Server not configured')
-    }
+    this.on('input', async (msg, send, done) => {
+      if (!server) return console.warn('Server not configured')
 
-    this.on('input', (msg, send, done) => {
-      msg.payload = 'yo'
-      send(msg)
+      const lights = server.getLights()
+      const light = lights.find((l) => l.ip === config.light)
+      if (!light || !light.options)
+        return console.warn('Light or light options not found.')
+
+      light.options.lights[0].on = !!msg.payload ? 1 : 0
+
+      await server.setLight(light)
       done()
     })
   }
