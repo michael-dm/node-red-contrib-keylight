@@ -8,7 +8,7 @@
     "build:editor": "rollup -c rollup.config.editor.js",
     "build:runtime": "tsc -p tsconfig.runtime.json",
     "build": "rm -rf dist && yarn copy && yarn build:editor && yarn build:runtime",
-    "prepack": "yarn run build"
+    "prepack": "yarn && yarn run build"
   },
   "author": "@Micode",
   "license": "MIT",
