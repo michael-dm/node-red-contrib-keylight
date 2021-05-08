@@ -36,7 +36,7 @@ const nodeInit: NodeInitializer = (RED): void => {
 
     if (keylightServers.hasOwnProperty(serverId)) {
       res.set({ 'content-type': 'application/json; charset=utf-8' })
-      res.end(JSON.stringify(keylightServers[serverId].getLights()))
+      return res.end(JSON.stringify(keylightServers[serverId].getLights()))
     }
 
     return res.status(500).send('Server not found or not activated')
