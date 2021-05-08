@@ -1,0 +1,19 @@
+{
+  "name": "node-red-contrib-keylight",
+  "version": "1.0.0",
+  "description": "A node-red module to control Elgato Key Lights.",
+  "main": "src/main.ts",
+  "repository": "https://github.com/micodeyt/node-red-contrib-keylight",
+  "author": "@Micode",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "dev": "ts-node src/main.ts"
+  },
+  "dependencies": {
+    "ts-node": "^9.1.1"
+  },
+  "devDependencies": {
+    "typescript": "^4.2.4"
+  }
+}
