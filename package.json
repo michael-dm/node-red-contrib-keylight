@@ -7,8 +7,8 @@
     "copy": "copyfiles -u 2 \"./src/nodes/**/*.{png,svg}\" \"./dist/nodes/\"",
     "build:editor": "rollup -c rollup.config.editor.js",
     "build:runtime": "tsc -p tsconfig.runtime.json",
-    "build": "rm -rf dist && yarn copy && yarn build:editor && yarn build:runtime",
-    "prepack": "yarn && yarn run build"
+    "build": "rm -rf dist && yarn build:editor && yarn build:runtime",
+    "prepack": "yarn run build"
   },
   "author": "@Micode",
   "license": "MIT",
